@@ -1,17 +1,18 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class Principal {
 
     private static int Qtd() {
-        Scanner sc = new Scanner(System.in);
+       try{ Scanner sc = new Scanner(System.in);
         System.out.println("Informe com um número inteiro, qual a quantidade \nde temperaturas que você deseja converter:");
-        try {
-            return sc.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Você não digitou um número inteiro.");
-            return Qtd();
-        }
+        return sc.nextInt();
+       } catch (Exception e) {
+           System.out.println("Você não digitou um número positivo ou inteiro.");
+           return Qtd();
+       }
+
     }
 
     public static void main(String[] args) {
@@ -26,7 +27,12 @@ public class Principal {
 
         UnityTemp UnityFuture = UnityOut("Out");
 
+
         int qtdTemp = Qtd();
+        if (qtdTemp <=0){
+            System.out.println("Você não digitou um número positivo ou inteiro.");
+            qtdTemp = Qtd();
+        }
 
         double[] vetorActual;
         vetorActual = new double[qtdTemp];
